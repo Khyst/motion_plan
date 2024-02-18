@@ -9,7 +9,7 @@ https://github.com/AtsushiSakai/PythonRobotics/blob/master/PathPlanning/AStar/a_
 import math
 
 import matplotlib.pyplot as plt
-from parking_lot import ParkingLot
+from parking_lot_pratice import ParkingLot
 
 
 class Node:
@@ -23,25 +23,12 @@ class Node:
 class AStarRoutePlanner:
     def __init__(self, parking_lot):
         self.parking_lot: ParkingLot = parking_lot
-
-        # Motion Model: dx, dy, cost
-        self.motions = [
-            [1, 0, 1],
-            [0, 1, 1],
-            [-1, 0, 1],
-            [0, -1, 1],
-            [-1, -1, math.sqrt(2)],
-            [-1, 1, math.sqrt(2)],
-            [1, -1, math.sqrt(2)],
-            [1, 1, math.sqrt(2)],
-        ]
-
+        self.motions = [ [1, 0, 1], [0, 1, 1], [-1, 0, 1], [0, -1, 1], [-1, -1, math.sqrt(2)], [-1, 1, math.sqrt(2)], [1, -1, math.sqrt(2)], [1, 1, math.sqrt(2)], ] # Motion Model: dx, dy, cost
         self.goal_node: Node = Node(0, 0, 0.0, -1)
 
     def search_route(self, start_point, goal_point, show_process=True):
         start_node = Node(start_point[0], start_point[1], 0.0, -1)
         self.goal_node = Node(goal_point[0], goal_point[1], 0.0, -1)
-
         open_set = {self.parking_lot.get_grid_index(start_node.x, start_node.y): start_node}
         closed_set = {}
 
@@ -75,6 +62,7 @@ class AStarRoutePlanner:
                     current_node.cost + motion[2],
                     current_node_index,
                 )
+
                 next_node_index = self.parking_lot.get_grid_index(
                     next_node.x, next_node.y
                 )
@@ -92,7 +80,7 @@ class AStarRoutePlanner:
                         if open_set[next_node_index].cost > next_node.cost:
                             # This path is the best until now. record it
                             open_set[next_node_index] = next_node
-
+                            
         print("Cannot find Route")
         return [], []
 

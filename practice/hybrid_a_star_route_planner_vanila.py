@@ -9,7 +9,7 @@ https://github.com/AtsushiSakai/PythonRobotics/blob/master/PathPlanning/AStar/a_
 import math
 import matplotlib.pyplot as plt
 
-from parking_lot import ParkingLot
+from parking_lot_pratice import ParkingLot
 
 
 class Pose:
@@ -128,10 +128,10 @@ class HybridAStarRoutePlanner:
 
     def calculate_heuristic_cost(self, node):
         distance_cost = self.calculate_distance_to_end(node.pose)
-        angle_cost = abs(self.change_radians_range(node.pose.theta - self.goal_node.pose.theta)) * 0.1
-        steering_cost = abs(node.steering) * 10
+        # angle_cost = abs(self.change_radians_range(node.pose.theta - self.goal_node.pose.theta)) * 0.1
+        # steering_cost = abs(node.steering) * 10
 
-        cost = distance_cost + angle_cost + steering_cost
+        cost = distance_cost # + angle_cost + steering_cost
         return float(cost)
 
     def calculate_distance_to_end(self, pose):

@@ -9,7 +9,7 @@ https://github.com/AtsushiSakai/PythonRobotics/blob/master/PathPlanning/AStar/a_
 import math
 import matplotlib.pyplot as plt
 
-from parking_lot import ParkingLot
+from parking_lot_pratice import ParkingLot
 
 
 class Pose:
